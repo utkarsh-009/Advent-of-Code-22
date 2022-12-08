@@ -10,6 +10,7 @@ void solve()
     // freopen("output.txt", "w", stdin);
 #endif
 
+
     unordered_map<int, vector<> lvl;
     unordered_map<string, unordered_map<string, int>> fileSys;
     for (int l = 0; l < 1045;)
