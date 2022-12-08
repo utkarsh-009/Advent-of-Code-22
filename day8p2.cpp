@@ -26,19 +26,21 @@ void solve()
         }
     }
 
-    int visible = n * 2 + (n - 2) * 2;
+    // int visible = n * 2 + (n - 2) * 2;
+    int maxScore = INT_MIN;
     for (int i = 1; i < n - 1; i++)
     {
         for (int j = 1; j < n - 1; j++)
         {
             int curr_h = treeH[i][j];
             bool visU = true, visD = true, visL = true, visR = true;
-
+            int sU = i, sD = n - i - 1, sL = j, sR = n - j - 1;
             for (int k = i - 1; k >= 0 && visU; k--)
             {
                 if (curr_h <= treeH[k][j])
                 {
                     visU = false;
+                    sU = i - k;
                 }
             }
 
@@ -47,6 +49,7 @@ void solve()
                 if (curr_h <= treeH[k][j])
                 {
                     visD = false;
+                    sD = k - i;
                 }
             }
             for (int k = j - 1; k >= 0 && visL; k--)
@@ -54,6 +57,7 @@ void solve()
                 if (curr_h <= treeH[i][k])
                 {
                     visL = false;
+                    sL = j - k;
                 }
             }
             for (int k = j + 1; k < n && visR; k++)
@@ -61,17 +65,17 @@ void solve()
                 if (curr_h <= treeH[i][k])
                 {
                     visR = false;
+                    sR = k - j;
                 }
             }
 
-            if (visU || visD || visL || visR)
-            {
-                visible++;
-            }
+            int score = sU * sD * sL * sR;
+            // cout << sU << " " << sD << " " << sL << " " << sR << " " << endl;
+            maxScore = max(maxScore, score);
         }
     }
 
-    cout << visible;
+    cout << maxScore;
 }
 
 int main()
