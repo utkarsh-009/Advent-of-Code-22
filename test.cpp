@@ -16,76 +16,36 @@ using namespace std;
  1   2   3   4   5   6   7   8   9
 */
 
+int strToint(string s)
+{
+    int ans;
+    string num = "";
+    for (int i = 0; i < s.length(); i++)
+    {
+
+        if (isdigit(s[i]))
+        {
+            num += s[i];
+        }
+    }
+
+    istringstream(num) >> ans;
+
+    return ans;
+}
+
 void solve()
 {
-#ifndef ONLINE_JUDGE
-    freopen("day5INPUT.txt", "r", stdin);
-    // freopen("output.txt", "w", stdin);
-#endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("day5INPUT.txt", "r", stdin);
+    //     // freopen("output.txt", "w", stdin);
+    // #endif
 
-    int t;
-    cin >> t;
+    string s;
+    getline(cin, s);
+    int num = strToint(s);
 
-    map<int, vector<char>> mp;
-    mp[1] = {'Q', 'W', 'P', 'S', 'Z', 'R', 'H', 'D'};
-    mp[2] = {'V', 'B', 'R', 'W', 'Q', 'H', 'F'};
-    mp[3] = {'C', 'V', 'S', 'H'};
-    mp[4] = {'H', 'F', 'G'};
-    mp[5] = {'P', 'G', 'J', 'B', 'Z'};
-    mp[6] = {'Q', 'T', 'J', 'H', 'W', 'F', 'L'};
-    mp[7] = {'Z', 'T', 'W', 'D', 'L', 'V', 'J', 'N'};
-    mp[8] = {'D', 'T', 'Z', 'C', 'J', 'G', 'H', 'F'};
-    mp[9] = {'W', 'P', 'V', 'M', 'B', 'H'};
-
-    for (int i = 0; i < t; i++)
-    {
-        int no_of_stacks = 0, src = 0, dst = 0;
-        string s;
-        getline(cin, s);
-        // cin >> s;
-
-        int n = s.length();
-        string num = "";
-        for (int i = 0; i < n; i++)
-        {
-            if (num == "" && isdigit(s[i]) && no_of_stacks == 0)
-            {
-                while (isdigit(s[i]))
-                {
-                    num += s[i];
-                    i++;
-                }
-
-                istringstream(num) >> no_of_stacks;
-                num = "";
-            }
-
-            else if (num == "" && isdigit(s[i]) && src == 0)
-            {
-                while (isdigit(s[i]))
-                {
-                    num += s[i];
-                    i++;
-                }
-
-                istringstream(num) >> src;
-                num = "";
-            }
-            else if (num == "" && isdigit(s[i]) && dst == 0)
-            {
-                while (isdigit(s[i]))
-                {
-                    num += s[i];
-                    i++;
-                }
-
-                istringstream(num) >> dst;
-                num = "";
-            }
-        }
-
-        cout << no_of_stacks << " " << src << " " << dst << " " << endl;
-    }
+    cout << num;
 }
 
 int main()
